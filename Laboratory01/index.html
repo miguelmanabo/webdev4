@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script> 
+
+        //Task 1 - Iterating a list of numbers
+
+        function ListOfNUmbers() {
+            let List = [];
+            for (let i = 0; i < 11; i++) {
+                let RandomNumber = Math.floor(Math.random() * 100);
+                List.push(RandomNumber);
+            }
+            return List;
+        }
+
+        function isOdd(number) {
+            return new Promise((resolve, reject)=> {
+                if (number % 2 == 0){
+                    reject(number);
+                } 
+                else {
+                    resolve(number);
+                }
+            });   
+        }
+
+        function Iteration(List){
+            for (let i = 0; i < List.length; i++) {
+                isOdd(List[i])
+                .then(number => {
+                console.log("Real Odd", number);
+                })
+                .catch(number =>{
+                console.log("isOdd", number);
+                });
+            }
+        }
+
+        let list = ListOfNUmbers();
+        Iteration(list);
+
+        //Task 2 - getting a random character with a delay of 500ms
+
+        //Since the function will be reused as an resolve and reject returns, I will create a separate function for getting a random character
+
+        function RandomCharacter() {
+            let randomNumber = Math.floor(Math.random() * 26) + 65;
+            return Character = String.fromCharCode(randomNumber);
+        }
+
+        function getRandomCharacter(Character) {
+            return new Promise((resolve, reject)=>{
+                setTimeout(()=>{
+                    resolve(Character);
+                }, 500);
+            });
+        }
+
+        let Char = RandomCharacter();
+        getRandomCharacter(Char)
+        .then(character =>{
+            console.log("Resolved Character", character);
+        })
+        .catch(character =>{
+            console.log("Rejected Character", character);
+        });
+
+        //Task 3 getting a random value with a delay of 500ms
+
+        //Since it will be reused again, I will create a separate function in getting a random value and another one for creating a promise
+
+        function RandomData() {
+            return random = Math.floor(Math.random() * 500 );
+        }
+
+        function getData(random) {
+            return new Promise((resolve, reject)=> {
+                setTimeout(()=>{
+                    reject(random);
+                }, 500);
+            });
+        }
+
+        let Thing = RandomData();
+        getData(Thing)
+        .then(number => {
+            console.log("Resolved Data", number);
+        })
+        .catch(number => {
+            console.log("Reject Data", number);
+        });
+
+        // Task 4 - Creating a loop, calling setTimeout() twice and will produce a rejected and a resolved output
+
+        function rejectResolve(){
+            return new Promise((resolve, reject)=> {
+                for (let i = 0; i < 2; i++){
+                    setTimeout(()=> {
+                        if ( i === 1 ){
+                            let output = [RandomData(), RandomCharacter()];
+                            resolve(console.log("Resolved Values", output));
+                        }
+                        else {
+                            let output = [RandomData(), RandomCharacter()];
+                            console.log("Rejected Values", output);
+                        }
+                    }, 500);
+                }
+            })
+        }
+
+        rejectResolve();
+        
+
+        
+
+    </script>
+</body>
+</html>
