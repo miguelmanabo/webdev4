@@ -9,16 +9,7 @@
 
     <script> 
 
-        //Task 1 - Iterating a list of numbers
-
-        function ListOfNUmbers() {
-            let List = [];
-            for (let i = 0; i < 11; i++) {
-                let RandomNumber = Math.floor(Math.random() * 100);
-                List.push(RandomNumber);
-            }
-            return List;
-        }
+        //Task 1 - Iterating a list of numbers, determining if its odd or even number with respective outputs
 
         function isOdd(number) {
             return new Promise((resolve, reject)=> {
@@ -26,9 +17,18 @@
             });   
         }
 
-        function Iteration(List){
-            for (let i = 0; i < List.length; i++) {
-                isOdd(List[i])
+        function Iteration(){
+            //To create a random list of numbers
+            let list = [];
+            for(let i = 0; i < 10; i++) {
+                let random = Math.floor(Math.random() * 26);
+                list.push(random);
+            }
+            //Print to see the list
+            console.log(list);
+            //Iterate using loop, the call isOdd Function 
+            for (let i = 0; i < list.length; i++) {
+                isOdd(list[i])
                 .then(number => {
                 console.log("Real Odd", number);
                 })
@@ -38,8 +38,7 @@
             }
         }
 
-        let list = ListOfNUmbers();
-        Iteration(list);
+        Iteration();
 
         //Task 2 - getting a random character with a delay of 500ms
 
